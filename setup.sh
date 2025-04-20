@@ -4,7 +4,7 @@ set -e
 # Display banner with your name until the Node.js installation
 echo ""
 echo "===================================="
-echo "      Welcome to ItzHimanshuPlayz"
+echo "      Welcome to DarkPlayzMC"
 echo "===================================="
 echo ""
 
