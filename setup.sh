@@ -1,65 +1,29 @@
 #!/bin/bash
 set -e
 
+# Display banner with your name until the Node.js installation
 echo ""
 echo "===================================="
-echo "      Welcome to Dark_Playz_MC"
+echo "      Welcome to ItzHimanshuPlayz"
 echo "===================================="
 echo ""
 
+# Wait for user confirmation
 read -p "Do you want to start the installation for Draco Daemon? (y/n): " confirm
 if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
     echo "Installation cancelled."
     exit 0
 fi
 
+# Step 1: Clone Draco-Daemon
 echo "Cloning Draco-Daemon..."
 git clone https://github.com/draco-labes/draco-daemon
 cd draco-daemon
+echo "Draco-Daemon cloned and ready."
 
-echo "Installing dependencies..."
-npm install
+# Additional setup for Draco-Daemon, if needed
+# You can add npm install or configuration steps here if required.
+# npm install
+# npm run setup
 
-echo "Setting up exec folder with scripts..."
-mkdir -p exec
-
-# seed.js
-cat <<EOF > exec/seed.js
-console.log("Seeding image data...");
-console.log("✅ Minecraft: SpigotMC");
-console.log("✅ Minecraft: PaperMC");
-console.log("✅ Python");
-console.log("✅ Node.js");
-console.log("Seeding complete!");
-EOF
-
-# createUser.js
-cat <<'EOF' > exec/createUser.js
-const readline = require("readline");
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-console.log("Create a new *admin* user for the Draco Panel.");
-
-rl.question("Username: ", (username) => {
-  rl.question("Email: ", (email) => {
-    rl.question("Password: ", (password) => {
-      console.log("\\n✅ User created!");
-      console.log("Username:", username);
-      console.log("Email:", email);
-      rl.close();
-    });
-  });
-});
-EOF
-
-echo "Running seed script..."
-node exec/seed.js
-
-echo "Running admin user creation..."
-node exec/createUser.js
-
-echo "✅ Draco Daemon setup completed successfully!"
+echo "Draco Daemon installation complete!"
